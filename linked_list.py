@@ -1,56 +1,79 @@
-"""
-============================================================================
-Implementation Exercise: Singly Linked List
-============================================================================
+# """
+# ============================================================================
+# Implementation Exercise: Singly Linked List
+# ============================================================================
 
--------
-Phase 1:
--------
-1. Node and LinkedList initialization
-2. Getting a node by its position
-3. Adding a node to the list's tail
-4. Adding a node to list's head
-5. Removing the head node
-6. Removing the tail node
-7. Returning the list length
+# -------
+# Phase 1:
+# -------
+# 1. Node and LinkedList initialization
+# 2. Getting a node by its position
+# 3. Adding a node to the list's tail
+# 4. Adding a node to list's head
+# 5. Removing the head node
+# 6. Removing the tail node
+# 7. Returning the list length
 
--------
-Phase 2:
--------
+# -------
+# Phase 2:
+# -------
 
-1. Check whether the list contains_value a value
-2. Inserting a node value into the list at a specific position
-3. Updating a list node's value at a specific position
-4. Removing a node value from the list at a specific position
-5. Format the list as a string whenever `print()` is invoked
-"""
+# 1. Check whether the list contains_value a value
+# 2. Inserting a node value into the list at a specific position
+# 3. Updating a list node's value at a specific position
+# 4. Removing a node value from the list at a specific position
+# 5. Format the list as a string whenever `print()` is invoked
+# """
 
 # Phase 1
 
-# TODO: Implement a Linked List Node class here
+
 class Node:
-  # TODO: Set the `_value` `_next` node instance variables
-  def __init__(self, value):
-    pass
+
+  def __init__(self, _value):
+    self._value = _value
+    self._next = None
 
 
-# TODO: Implement a Singly Linked List class here
+
 class LinkedList:
-  # TODO: Set the `_head` node, `_tail` node, and list `_length` instance variables
+
   def __init__(self):
-    pass
+    self._head = None
+    self._tail = None
+    self._length = 0
 
   # TODO: Implement the get_node method here
   def get_node(self, position):
-    pass
+    if(position is 0):
+      return self._head
 
   # TODO: Implement the add_to_tail method here
   def add_to_tail(self, value):
-    pass
+    new_node = Node(value)
+    if(self._head is None): 
+      self._head = new_node
+      self._length+=1
+      return
+    if(self._tail is None):
+      self._head._next = new_node
+      self._tail = new_node
+      self._length+=1
+      return
+
+    self._length+=1
+    self._tail._next = new_node
+    self._tail = new_node
+
+
 
   # TODO: Implement the add_to_head method here
   def add_to_head(self, value):
-    pass
+    new_node = Node(value)
+    
+    if self._head is None:
+      self._head = new_node
+
 
   # TODO: Implement the remove_head method here
   def remove_head(self):
@@ -59,10 +82,12 @@ class LinkedList:
   # TODO: Implement the remove_tail method here
   def remove_tail(self):
     pass
+  
 
   # TODO: Implement the __len__ method here
+
   def __len__(self):
-    pass
+    return self._length
 
 # Phase 2
 
@@ -84,24 +109,33 @@ class LinkedList:
 
   # TODO: Implement the __str__ method here
   def __str__(self):
-    pass
+    list = []
+    x = self._head
+    while x:
+      list.append(x._value)
+      x = x._next
+    return str(list)
 
 # Phase 1 Manual Testing:
 
 # 1. Test Node and LinkedList initialization
 node = Node('hello')
 print(node)                                     # <__main__.Node object at ...>
-print(node._value)                              # hello
+print('node value', node._value)                              # hello
 linked_list = LinkedList()
-print(linked_list)                              # <__main__.LinkedList object at ...>
+print(linked_list)                             # <__main__.LinkedList object at ...>
 
 # # 2. Test getting a node by its position
 # print(linked_list.get_node(0))                # None
 
 # # 3. Test adding a node to the list's tail
-# linked_list.add_to_tail('new tail node')
+linked_list.add_to_tail('chess move')
+linked_list.add_to_tail('some value')
+linked_list.add_to_tail('hamburgers')
 # print(linked_list.get_node(0))                # <__main__.Node object at ...>
 # print(linked_list.get_node(0)._value)         # `new tail node`
+print("current head", linked_list._head)
+print('current tail', linked_list._tail)
 
 # # 4. Test adding a node to list's head
 # linked_list.add_to_head('new head node')
@@ -119,8 +153,8 @@ print(linked_list)                              # <__main__.LinkedList object at
 # print(linked_list.get_node(0))                # None
 
 # # 7. Test returning the list length
-# print(len(linked_list))                                 # 2
-
+print(len(linked_list))                                 # 2
+print('whole list of nodes!', str(linked_list))
 # Phase 2 Manual Testing
 
 # # 1. Test whether the list contains_value a value
